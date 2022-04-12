@@ -11,6 +11,11 @@ public class AddressbookData {
     private String firstname;
     private String lastname;
 
+    /***
+     *
+     * @param id
+     * @param addressbookDTO
+     */
     public AddressbookData(long id, AddressbookDTO addressbookDTO){
         this.id = id;
         this.firstname = addressbookDTO.getFirstname();
