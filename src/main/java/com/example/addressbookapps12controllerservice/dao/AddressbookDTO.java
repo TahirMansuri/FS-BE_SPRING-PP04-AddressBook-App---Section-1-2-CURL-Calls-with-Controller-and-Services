@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddressBookDTO {
-    private long id;
-    private String name;
+public class AddressbookDTO {
+    private String firstname;
+    private String lastname;
 }
