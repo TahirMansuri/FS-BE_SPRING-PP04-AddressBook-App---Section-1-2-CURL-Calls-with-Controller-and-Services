@@ -85,7 +85,7 @@ public class AddressbookController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<ResponseDTO> deleteAddressbookData(@PathVariable("id") long id) {
         AddressbookData addressbookData = null;
-        addressbookData = new AddressbookData(id,new AddressbookDTO("Tahir","Mansuri"));
+        addressbookData = new AddressbookData(id,new AddressbookDTO("Tahir","Mansuri","Siddhi Vinayak Nagar","Shahada","MH","425409","7030820545","tahir@gmail.com"));
         ResponseDTO responseDTO = new ResponseDTO("Delete Call for Addressbook Success for ID :"+id,addressbookData);
         return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
     }

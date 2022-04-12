@@ -10,7 +10,12 @@ public class AddressbookData {
     private long id;
     private String firstname;
     private String lastname;
-
+    private String address;
+    private String city;
+    private String state;
+    private String zip;
+    private String phone;
+    private String email;
     /***
      *
      * @param id
@@ -20,5 +25,11 @@ public class AddressbookData {
         this.id = id;
         this.firstname = addressbookDTO.getFirstname();
         this.lastname = addressbookDTO.getLastname();
+        this.address = addressbookDTO.getAddress();
+        this.city = addressbookDTO.getCity();
+        this.state = addressbookDTO.getState();
+        this.zip = addressbookDTO.getZip();
+        this.phone = addressbookDTO.getPhone();
+        this.email = addressbookDTO.getEmail();
     }
 }

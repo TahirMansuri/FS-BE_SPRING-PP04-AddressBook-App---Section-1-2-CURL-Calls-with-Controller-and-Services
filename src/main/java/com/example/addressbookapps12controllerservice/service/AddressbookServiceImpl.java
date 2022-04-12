@@ -17,7 +17,7 @@ public class AddressbookServiceImpl implements IAddressbookService{
     @Override
     public List<AddressbookData> getAddressbookData() {
         List<AddressbookData> addressbookDataList = new ArrayList<>();
-        addressbookDataList.add(new AddressbookData(1,new AddressbookDTO("Tahir","Mansuri")));
+        addressbookDataList.add(new AddressbookData(1,new AddressbookDTO("Tahir","Mansuri","Siddhi Vinayak Nagar","Shahada","MH","425409","7030820545","tahir@gmail.com")));
         return addressbookDataList;
     }
 
@@ -29,7 +29,7 @@ public class AddressbookServiceImpl implements IAddressbookService{
     @Override
     public AddressbookData getAddressbookDataById(long id) {
         AddressbookData addressbookData = null;
-        addressbookData = new AddressbookData(id,new AddressbookDTO("Tahir","Mansuri"));
+        addressbookData = new AddressbookData(id,new AddressbookDTO("Tahir","Mansuri","Siddhi Vinayak Nagar","Shahada","MH","425409","7030820545","tahir@gmail.com"));
         return addressbookData;
     }
 
