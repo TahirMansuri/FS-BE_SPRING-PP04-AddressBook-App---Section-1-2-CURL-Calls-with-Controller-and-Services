@@ -48,6 +48,11 @@ public class AddressbookController {
         return new ResponseEntity<String>("Update Call for Addressbook Success. "+addressBookDTO,HttpStatus.OK);
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> updateAddressbookById(@PathVariable("id") long id) {
+        return new ResponseEntity<String>("Update Call for Addressbook By ID :"+id,HttpStatus.OK);
+    }
+
     /***
      *
      * @param id
