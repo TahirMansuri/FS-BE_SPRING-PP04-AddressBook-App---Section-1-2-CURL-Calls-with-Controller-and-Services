@@ -30,19 +30,10 @@ public interface IAddressbookService {
     /***
      *
      * @param addressbookDTO
-     * @return AddressbookData
-     */
-    AddressbookData updateAddressbookData(AddressbookDTO addressbookDTO);
-
-    /***
-     *
-     * @param addressbookDTO
      * @param id
      * @return AddressbookData
      */
     AddressbookData updateAddressbookDataById(AddressbookDTO addressbookDTO,long id);
-
-    void deleteAddressbookData();
 
     void deleteAddressbookDataById(long id);
 }

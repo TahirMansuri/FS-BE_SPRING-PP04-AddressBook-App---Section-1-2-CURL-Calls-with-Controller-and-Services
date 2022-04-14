@@ -16,6 +16,8 @@ public class AddressbookData {
     private String zip;
     private String phone;
     private String email;
+    private String password;
+
     /***
      *
      * @param id
@@ -31,5 +33,6 @@ public class AddressbookData {
         this.zip = addressbookDTO.getZip();
         this.phone = addressbookDTO.getPhone();
         this.email = addressbookDTO.getEmail();
+        this.password = addressbookDTO.getPassword();
     }
 }

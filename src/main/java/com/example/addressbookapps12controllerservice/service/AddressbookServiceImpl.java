@@ -17,7 +17,7 @@ public class AddressbookServiceImpl implements IAddressbookService{
     @Override
     public List<AddressbookData> getAddressbookData() {
         List<AddressbookData> addressbookDataList = new ArrayList<>();
-        addressbookDataList.add(new AddressbookData(1,new AddressbookDTO("Tahir","Mansuri","Siddhi Vinayak Nagar","Shahada","MH","425409","7030820545","tahir@gmail.com")));
+        addressbookDataList.add(new AddressbookData(1,new AddressbookDTO("Tahir","Mansuri","Siddhi Vinayak Nagar","Shahada","MH","425409","7030820545","tahir@gmail.com","Tahir@1234")));
         return addressbookDataList;
     }
 
@@ -29,7 +29,7 @@ public class AddressbookServiceImpl implements IAddressbookService{
     @Override
     public AddressbookData getAddressbookDataById(long id) {
         AddressbookData addressbookData = null;
-        addressbookData = new AddressbookData(id,new AddressbookDTO("Tahir","Mansuri","Siddhi Vinayak Nagar","Shahada","MH","425409","7030820545","tahir@gmail.com"));
+        addressbookData = new AddressbookData(id,new AddressbookDTO("Tahir","Mansuri","Siddhi Vinayak Nagar","Shahada","MH","425409","7030820545","tahir@gmail.com","Tahir@1234"));
         return addressbookData;
     }
 
@@ -48,18 +48,6 @@ public class AddressbookServiceImpl implements IAddressbookService{
     /***
      *
      * @param addressbookDTO
-     * @return addressbookData
-     */
-    @Override
-    public AddressbookData updateAddressbookData(AddressbookDTO addressbookDTO) {
-        AddressbookData addressbookData = null;
-        addressbookData = new AddressbookData(1,addressbookDTO);
-        return addressbookData;
-    }
-
-    /***
-     *
-     * @param addressbookDTO
      * @param id
      * @return addressbookData
      */
@@ -68,11 +56,6 @@ public class AddressbookServiceImpl implements IAddressbookService{
         AddressbookData addressbookData = null;
         addressbookData = new AddressbookData(id,addressbookDTO);
         return addressbookData;
-    }
-
-    @Override
-    public void deleteAddressbookData() {
-
     }
 
     @Override
