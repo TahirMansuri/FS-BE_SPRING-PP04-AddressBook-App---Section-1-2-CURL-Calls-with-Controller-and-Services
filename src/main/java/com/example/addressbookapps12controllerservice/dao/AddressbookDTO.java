@@ -17,7 +17,7 @@ public class AddressbookDTO {
      * @Pattern - regex for First Letter Capital and must contain 3 letter
      */
     @NotEmpty(message = "First Name may not be empty.")
-    @Pattern(regexp = "^[A-Z]{1}[A-Za-z\\s]{2,}$]",message = "First Name must be Start with Capital Letter and Contain atleast 3 Characters")
+    @Pattern(regexp = "^[A-Z]{1}[A-Za-z]{2,}$",message = "First Name must be Start with Capital Letter and Contain atleast 3 Characters")
     private String firstname;
 
     @NotEmpty(message = "Last Name may not be empty.")
