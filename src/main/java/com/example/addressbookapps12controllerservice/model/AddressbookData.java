@@ -35,4 +35,20 @@ public class AddressbookData {
         this.email = addressbookDTO.getEmail();
         this.password = addressbookDTO.getPassword();
     }
+
+    /***
+     * 
+     * @param addressbookDTO
+     */
+    public AddressbookData(AddressbookDTO addressbookDTO) {
+        this.firstname = addressbookDTO.getFirstname();
+        this.lastname = addressbookDTO.getLastname();
+        this.address = addressbookDTO.getAddress();
+        this.city = addressbookDTO.getCity();
+        this.state = addressbookDTO.getState();
+        this.zip = addressbookDTO.getZip();
+        this.phone = addressbookDTO.getPhone();
+        this.email = addressbookDTO.getEmail();
+        this.password = addressbookDTO.getPassword();
+    }
 }
