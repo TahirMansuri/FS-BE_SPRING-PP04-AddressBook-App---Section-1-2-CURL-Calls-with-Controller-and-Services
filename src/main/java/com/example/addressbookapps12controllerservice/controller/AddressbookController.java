@@ -75,4 +75,28 @@ public class AddressbookController {
         addressbookService.deleteAddressbookDataById(id);
         return new ResponseEntity<String>("Address Book with ID "+id+" is Deleted",HttpStatus.OK);
     }
+
+    /***
+     *
+     * @param city
+     * @return
+     */
+    @GetMapping("/getbycity/{city}")
+    public ResponseEntity<ResponseDTO> getAddressbookByCity(@PathVariable("city") String city) {
+        List<AddressbookData> addressbookDataList = addressbookService.addressBookDataByCity(city);
+        ResponseDTO responseDTO = new ResponseDTO("Call for Get by City Success",addressbookDataList);
+        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
+    }
+
+    /***
+     * 
+     * @param state
+     * @return
+     */
+    @GetMapping("/getbystate/{state}")
+    public ResponseEntity<ResponseDTO> getAddressbookByState(@PathVariable("state") String state) {
+        List<AddressbookData> addressbookDataList = addressbookService.addressbookDataByState(state);
+        ResponseDTO responseDTO = new ResponseDTO("Call for Get By State Success",addressbookDataList);
+        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
+    }
 }

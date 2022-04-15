@@ -35,5 +35,23 @@ public interface IAddressbookService {
      */
     AddressbookData updateAddressbookDataById(AddressbookDTO addressbookDTO,long id);
 
+    /***
+     *
+     * @param id
+     */
     void deleteAddressbookDataById(long id);
+
+    /***
+     *
+     * @param city
+     * @return
+     */
+    List<AddressbookData> addressBookDataByCity(String city);
+
+    /***
+     *
+     * @param state
+     * @return
+     */
+    List<AddressbookData> addressbookDataByState(String state);
 }

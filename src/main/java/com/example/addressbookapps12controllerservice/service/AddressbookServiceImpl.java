@@ -69,4 +69,25 @@ public class AddressbookServiceImpl implements IAddressbookService{
         AddressbookData addressbookData = this.getAddressbookDataById(id);
         addressbookRepository.delete(addressbookData);
     }
+
+    /***
+     * Custom Service method to get addressbook data by City
+     * @param city
+     * @return
+     */
+    @Override
+    public List<AddressbookData> addressBookDataByCity(String city) {
+        return addressbookRepository.findAddressbookDataByCity(city);
+    }
+
+    /***
+     * Custom Service method to get addressbook data by State
+     * @param state
+     * @return
+     */
+    @Override
+    public List<AddressbookData> addressbookDataByState(String state) {
+        return addressbookRepository.findAddressbookDataByState(state);
+    }
+
 }
