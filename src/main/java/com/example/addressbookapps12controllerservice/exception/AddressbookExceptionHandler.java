@@ -14,6 +14,11 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class AddressbookExceptionHandler {
 
+    /***
+     * User friendly exception for User Data Validation
+     * @param exception
+     * @return
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ResponseDTO> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
         List<ObjectError> objectErrorList = exception.getBindingResult().getAllErrors();
@@ -24,4 +29,14 @@ public class AddressbookExceptionHandler {
         return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.BAD_REQUEST);
     }
 
+    /***
+     * User defined Custom exception for User Friendly Message
+     * @param exception
+     * @return
+     */
+    @ExceptionHandler(AddressbookException.class)
+    public ResponseEntity<ResponseDTO> handleAddressbookException(AddressbookException exception) {
+        ResponseDTO responseDTO = new ResponseDTO("Custome Exception while Processing Rest Call",exception.getMessage());
+        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.BAD_REQUEST);
+    }
 }

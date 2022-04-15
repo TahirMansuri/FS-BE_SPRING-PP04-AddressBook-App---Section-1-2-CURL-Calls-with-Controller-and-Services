@@ -21,5 +21,4 @@ public class AddressBookAppS12ControllerServiceApplication {
          */
         log.info("Addressbook App Database User is {}.",context.getEnvironment().getProperty("spring.datasource.username"));
     }
-
 }
