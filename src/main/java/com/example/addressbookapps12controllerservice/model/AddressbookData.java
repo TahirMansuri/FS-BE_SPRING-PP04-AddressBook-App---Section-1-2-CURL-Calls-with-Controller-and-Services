@@ -3,10 +3,17 @@ package com.example.addressbookapps12controllerservice.model;
 import com.example.addressbookapps12controllerservice.dao.AddressbookDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GeneratorType;
+
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
+@Entity
+@Table(name = "Addressbook")
 public class AddressbookData {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String firstname;
     private String lastname;
@@ -20,11 +27,9 @@ public class AddressbookData {
 
     /***
      *
-     * @param id
      * @param addressbookDTO
      */
-    public AddressbookData(long id, AddressbookDTO addressbookDTO){
-        this.id = id;
+    public void updateAddressbookData(AddressbookDTO addressbookDTO){
         this.firstname = addressbookDTO.getFirstname();
         this.lastname = addressbookDTO.getLastname();
         this.address = addressbookDTO.getAddress();
@@ -40,15 +45,7 @@ public class AddressbookData {
      * 
      * @param addressbookDTO
      */
-    public AddressbookData(AddressbookDTO addressbookDTO) {
-        this.firstname = addressbookDTO.getFirstname();
-        this.lastname = addressbookDTO.getLastname();
-        this.address = addressbookDTO.getAddress();
-        this.city = addressbookDTO.getCity();
-        this.state = addressbookDTO.getState();
-        this.zip = addressbookDTO.getZip();
-        this.phone = addressbookDTO.getPhone();
-        this.email = addressbookDTO.getEmail();
-        this.password = addressbookDTO.getPassword();
+    public AddressbookData(AddressbookDTO addressbookDTO){
+        this.updateAddressbookData(addressbookDTO);
     }
 }
