@@ -1,7 +1,9 @@
 package com.example.addressbookapps12controllerservice.controller;
 
 import com.example.addressbookapps12controllerservice.dao.AddressbookDTO;
+import com.example.addressbookapps12controllerservice.dao.LoginDTO;
 import com.example.addressbookapps12controllerservice.dao.ResponseDTO;
+import com.example.addressbookapps12controllerservice.dao.Status;
 import com.example.addressbookapps12controllerservice.model.AddressbookData;
 import com.example.addressbookapps12controllerservice.service.IAddressbookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +25,13 @@ public class AddressbookController {
      *
      * @return ResponseEntity<String>
      */
-    @RequestMapping(value={"","/","/get"})
-    public ResponseEntity<ResponseDTO> getAddressbookData() {
+    @RequestMapping(value={"/get"})
+    public ResponseEntity<?> getAddressbookData() {
         List<AddressbookData> addressbookDataList = null;
         addressbookDataList = addressbookService.getAddressbookData();
         ResponseDTO responseDTO = new ResponseDTO("Get Call Success for Addressbook App.",addressbookDataList);
         return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
+        //return ResponseEntity.ok(addressbookDataList);
     }
 
     /***
@@ -49,12 +52,26 @@ public class AddressbookController {
      * @param addressBookDTO
      * @return ResponseEntity<String>
      */
-    @PostMapping("/create")
-    public ResponseEntity<ResponseDTO> createAddressbookData(@Valid @RequestBody AddressbookDTO addressBookDTO) {
-        AddressbookData addressbookData = null;
-        addressbookData = addressbookService.createAddressbookData(addressBookDTO);
-        ResponseDTO responseDTO = new ResponseDTO("Post Call for Addressbook Success.",addressbookData);
+//    @PostMapping("/user/register")
+//    public ResponseEntity<?> createAddressbookData(@Valid @RequestBody AddressbookDTO addressBookDTO) {
+//        AddressbookData addressbookData = null;
+//        addressbookData = addressbookService.createAddressbookData(addressBookDTO);
+//        ResponseDTO responseDTO = new ResponseDTO("Post Call for Addressbook Success.",addressbookData);
+//        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
+//    }
+
+    @PostMapping("/user/register")
+    public ResponseEntity<?> createAddressbookData(@Valid @RequestBody AddressbookDTO addressBookDTO) {
+        Status status = addressbookService.createAddressbookData(addressBookDTO);
+        ResponseDTO responseDTO = new ResponseDTO("Post Call for Register : ",status);
         return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
+    }
+
+    @PostMapping("/user/login")
+    public ResponseEntity<?> loginUser(@Valid @RequestBody LoginDTO loginDTO) {
+        Status status = addressbookService.loginUser(loginDTO.getEmail(),loginDTO.getPassword());
+        ResponseDTO responseDTO = new ResponseDTO("Call for User Login : ",status);
+        return new ResponseEntity<>(responseDTO,HttpStatus.OK);
     }
 
     @PutMapping("/updatebyid/{id}")

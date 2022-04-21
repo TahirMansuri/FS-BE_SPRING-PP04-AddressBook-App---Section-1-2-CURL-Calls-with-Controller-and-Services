@@ -1,16 +1,21 @@
 package com.example.addressbookapps12controllerservice.dao;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
-@Data
+//@Data
+@Getter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddressbookDTO {
+
+//    @Autowired
+//    PasswordEncoder passwordEncoder;
 
     /***
      * @NotNull - firstname must be entered
@@ -58,4 +63,40 @@ public class AddressbookDTO {
      */
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()<>]).{8,}$",message = "Password must contain 1 Uppercase, 1 Lowercase letter along with Special Symbol and atleast 8 character")
     private String password;
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

@@ -1,10 +1,13 @@
 package com.example.addressbookapps12controllerservice.service;
 
 import com.example.addressbookapps12controllerservice.dao.AddressbookDTO;
+import com.example.addressbookapps12controllerservice.dao.LoginDTO;
+import com.example.addressbookapps12controllerservice.dao.Status;
 import com.example.addressbookapps12controllerservice.exception.AddressbookException;
 import com.example.addressbookapps12controllerservice.model.AddressbookData;
 import com.example.addressbookapps12controllerservice.repository.AddressbookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,6 +18,9 @@ public class AddressbookServiceImpl implements IAddressbookService{
 
     @Autowired
     AddressbookRepository addressbookRepository;
+
+//    @Autowired
+//    PasswordEncoder passwordEncoder;
 
     /***
      * Service method for Getting All Addressbook Data from DM
@@ -41,10 +47,18 @@ public class AddressbookServiceImpl implements IAddressbookService{
      * @return addressbookData
      */
     @Override
-    public AddressbookData createAddressbookData(AddressbookDTO addressbookDTO) {
-        AddressbookData addressbookData = null;
-        addressbookData = new AddressbookData(addressbookDTO);
-        return addressbookRepository.save(addressbookData);
+    public Status createAddressbookData(AddressbookDTO addressbookDTO) {
+
+        AddressbookData addressbookData = new AddressbookData(addressbookDTO);
+
+        boolean isExist = this.getAddressbookData().stream().filter(data -> data.getEmail().equalsIgnoreCase(addressbookDTO.getEmail())).findFirst().isPresent();
+
+        if(isExist) {
+            return Status.USER_ALREADY_EXISTS;
+        } else {
+            addressbookRepository.save(addressbookData);
+            return Status.SUCCESS;
+        }
     }
 
     /***
@@ -88,6 +102,15 @@ public class AddressbookServiceImpl implements IAddressbookService{
     @Override
     public List<AddressbookData> addressbookDataByState(String state) {
         return addressbookRepository.findAddressbookDataByState(state);
+    }
+
+    @Override
+    public Status loginUser(String email,String password) {
+        if(addressbookRepository.existsByEmailAndPassword(email,password)) {
+            return Status.SUCCESS;
+        } else {
+            return Status.FAILURE;
+        }
     }
 
 }

@@ -4,6 +4,9 @@ import com.example.addressbookapps12controllerservice.dao.AddressbookDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GeneratorType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 
@@ -11,7 +14,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "Addressbook")
+//@Document(collation = "addressbook")
 public class AddressbookData {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -38,7 +44,7 @@ public class AddressbookData {
         this.zip = addressbookDTO.getZip();
         this.phone = addressbookDTO.getPhone();
         this.email = addressbookDTO.getEmail();
-        this.password = addressbookDTO.getPassword();
+        this.password =  addressbookDTO.getPassword();
     }
 
     /***
