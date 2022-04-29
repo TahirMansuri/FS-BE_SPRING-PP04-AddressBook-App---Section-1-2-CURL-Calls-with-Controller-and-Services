@@ -116,4 +116,10 @@ public class AddressbookController {
         ResponseDTO responseDTO = new ResponseDTO("Call for Get By State Success",addressbookDataList);
         return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
     }
+
+    @PostMapping("/tokenlogin")
+    public ResponseEntity<ResponseDTO> loginWithToken(@RequestBody LoginDTO loginDTO){
+        ResponseDTO response = new ResponseDTO( addressbookService.loginWithToken(loginDTO.getEmail(),loginDTO.getPassword()),"Done");
+        return new ResponseEntity<ResponseDTO>(response,HttpStatus.OK);
+    }
 }

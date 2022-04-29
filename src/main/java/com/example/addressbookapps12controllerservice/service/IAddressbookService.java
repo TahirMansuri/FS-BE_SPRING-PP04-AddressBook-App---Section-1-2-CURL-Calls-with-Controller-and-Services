@@ -59,4 +59,6 @@ public interface IAddressbookService {
     List<AddressbookData> addressbookDataByState(String state);
 
     Status loginUser(String email,String password);
+
+    String loginWithToken(String email, String password);
 }

@@ -6,19 +6,29 @@ import com.example.addressbookapps12controllerservice.dao.Status;
 import com.example.addressbookapps12controllerservice.exception.AddressbookException;
 import com.example.addressbookapps12controllerservice.model.AddressbookData;
 import com.example.addressbookapps12controllerservice.repository.AddressbookRepository;
+import com.example.addressbookapps12controllerservice.util.JMSUtil;
+import com.example.addressbookapps12controllerservice.util.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class AddressbookServiceImpl implements IAddressbookService{
 
     @Autowired
     AddressbookRepository addressbookRepository;
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    TokenUtil tokenUtil = new TokenUtil();
+
+    @Autowired
+    JMSUtil jmsUtil;
 //    @Autowired
 //    PasswordEncoder passwordEncoder;
 
@@ -56,9 +66,22 @@ public class AddressbookServiceImpl implements IAddressbookService{
         if(isExist) {
             return Status.USER_ALREADY_EXISTS;
         } else {
+            addressbookData.setPassword(bCryptPasswordEncoder.encode(addressbookDTO.getPassword()));
             addressbookRepository.save(addressbookData);
             return Status.SUCCESS;
         }
+    }
+
+    @Override
+    public String loginWithToken(String email, String password) {
+        AddressbookData addressbookData = addressbookRepository.findAddressbookDataByEmail(email);
+        System.out.println(addressbookData);
+        boolean matches = bCryptPasswordEncoder.matches(password, addressbookData.getPassword());
+        String token = tokenUtil.createToken(addressbookData.getId());
+        //JMSUtil jmsUtil = new JMSUtil();
+        int random = ThreadLocalRandom.current().nextInt(100000, 1000000);
+        jmsUtil.sendEmail(email,"OTP for Addressbook App Login","Hello "+addressbookData.getFirstname()+", OTP for Your Addressbook App is : "+random);
+        return  token;
     }
 
     /***

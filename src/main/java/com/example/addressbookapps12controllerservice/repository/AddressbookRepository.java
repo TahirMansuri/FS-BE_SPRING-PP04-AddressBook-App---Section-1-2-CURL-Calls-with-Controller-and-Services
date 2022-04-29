@@ -28,8 +28,16 @@ public interface AddressbookRepository extends JpaRepository<AddressbookData, Lo
     @Query(value = "select * from addressbook where state = :state",nativeQuery = true)
     List<AddressbookData> findAddressbookDataByState(String state);
 
+    /***
+     *
+     * @param email
+     * @param password
+     * @return
+     */
     @Query(value = "select * from addressbook where email = :email and password = :password",nativeQuery = true)
     Status findUserLogin(String email, String password);
 
     boolean existsByEmailAndPassword(String email,String password);
+
+    AddressbookData findAddressbookDataByEmail(String email);
 }
