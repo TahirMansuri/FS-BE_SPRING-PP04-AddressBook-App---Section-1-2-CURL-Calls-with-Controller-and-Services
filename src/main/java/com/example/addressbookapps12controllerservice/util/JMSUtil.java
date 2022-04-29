@@ -9,19 +9,16 @@ import org.springframework.stereotype.Service;
 public class JMSUtil {
     @Autowired
     JavaMailSender javaMailSender;
-    public void sendEmail(
-            String toEmail,
-            String subject,
-            String body){
+    public void sendEmail(String toEmail, String subject, String body){
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("ss32922@gmail.com");
+        message.setFrom("oldapolda38@gmail.com");
         message.setTo(toEmail);
         message.setText(body);
         message.setSubject(subject);
 
         javaMailSender.send(message);
 
-        System.out.println("mail sent successfully...");
+        System.out.println("OTP Mail Sent Successfully...");
     }
 
 }

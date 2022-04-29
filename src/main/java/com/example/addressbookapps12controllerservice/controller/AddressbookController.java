@@ -119,7 +119,7 @@ public class AddressbookController {
 
     @PostMapping("/tokenlogin")
     public ResponseEntity<ResponseDTO> loginWithToken(@RequestBody LoginDTO loginDTO){
-        ResponseDTO response = new ResponseDTO( addressbookService.loginWithToken(loginDTO.getEmail(),loginDTO.getPassword()),"Done");
+        ResponseDTO response = new ResponseDTO( addressbookService.loginWithToken(loginDTO.getEmail(),loginDTO.getPassword()),"OTP Sent to your Email ID");
         return new ResponseEntity<ResponseDTO>(response,HttpStatus.OK);
     }
 }
